@@ -1,11 +1,4 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  name: MyString
-  description: MyText
-  homepage: MyString
-
-two:
-  name: MyString
-  description: MyText
-  homepage: MyString
+lean:
+  name: Lean
+  description: A Fixture for tests with the lean description
+  homepage: http://github.com/JakeCataford/Lean
