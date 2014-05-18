@@ -18,4 +18,11 @@ class ProjectTest < ActiveSupport::TestCase
       )
     end
   end
+
+  test 'should HABTM users' do
+    assert_difference 'projects(:lean).users.count' do
+      projects(:lean).users << users(:user)
+      projects(:lean).save!
+    end
+  end
 end

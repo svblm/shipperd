@@ -1,0 +1,4 @@
+user:
+  email: email@email.com
+  username: username
+  password_digest: 1234567890
