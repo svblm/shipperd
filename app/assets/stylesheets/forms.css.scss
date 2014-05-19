@@ -1,0 +1,10 @@
+.glued {
+  input:first-child {
+    border-radius: 4px 4px 0px 0px;
+    border-bottom: none;
+  }
+  input:last-child {
+    border-radius: 0px 0px 4px 4px;
+    border-top: none;
+  }
+}

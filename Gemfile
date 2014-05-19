@@ -11,3 +11,5 @@ gem 'turbolinks'
 gem 'spring',        group: :development
 gem 'bcrypt', '~> 3.1.7'
 gem 'puma'
+gem 'bootstrap-sass'
+gem 'jquery-easing-rails'

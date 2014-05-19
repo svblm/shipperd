@@ -1,0 +1,17 @@
+<div class="skinny-container">
+  <h3>Start Shipping.</h3>
+  <h5 class="text-muted">Create an account</h5>
+  <%= form_for @user do |f| %>
+    <div class="form-group">
+      <%= f.email_field :email, class: "form-control", placeholder: "Email" %>
+    </div>
+    <div class="form-group">
+      <%= f.text_field :username, class: "form-control", placeholder: "Username" %>
+    </div>
+    <div class="form-group glued">
+      <%= f.password_field :password, class: "form-control", placeholder: "Password" %>
+      <%= f.password_field :password_confirmation, class: "form-control", placeholder: "Password Confirmation" %>
+    </div>
+    <%= f.submit "Create Account.", class: "btn btn-success" %>
+    <% end %>
+</div>

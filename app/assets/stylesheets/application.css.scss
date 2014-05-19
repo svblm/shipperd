@@ -12,4 +12,38 @@
  *
  *= require_tree .
  *= require_self
+ *= require pnotify
  */
+@import "bootstrap";
+@import "colors";
+html, body {
+  padding: 0;
+  margin: 0;
+  background: $sand;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.logo {
+  border-radius: 999px;
+  background: rgba(255,255,255,0.3);
+  position: fixed;
+  margin: 10px;
+  right: 0px;
+  opacity: 0.5;
+  display: block;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.8;
+  }
+  img {
+    height: 65px;
+  }
+}
+
+.notification {
+  display: none
+}
+
+hr {
+  margin-top: 5px;
+}

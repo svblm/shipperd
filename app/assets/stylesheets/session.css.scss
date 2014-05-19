@@ -1,0 +1,17 @@
+@import 'colors';
+.skinny-container {
+  width: 250px;
+  margin: 0 auto;
+  h3 {
+    text-align: center;
+    padding: 100px 0px 25px 0px;
+  }
+
+  h5 {
+    text-align: center;
+    padding: 0px 0px 15px;
+  }
+  .btn {
+    float: right;
+  }
+}

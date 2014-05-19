@@ -1,0 +1,33 @@
+<% unless current_user.nil? %>
+  <div class="main-menu">
+    <div class="menu-button">
+      <span class="glyphicon glyphicon-th-list"></span>
+    </div>
+    <%= link_to user_path(current_user), class: "current-user" do %>
+      <%= image_tag current_user.gravatar_url(25) %>
+      <h4> <%= current_user.username %> </h4>
+    <% end %>
+    <div class="clearfix"></div>
+    <div class="actions">
+      <%= link_to logout_path() do %>
+        <span class="glyphicon glyphicon-log-out"></span>
+      <% end %>
+    </div>
+
+    <div class="section">
+      <h4>Projects</h4>
+      <hr/>
+      <ul>
+        <% current_user.projects.each do |p| %>
+          <li><%= link_to "#" %></li>
+        <% end %>
+        <li>
+          <a class="muted-action" ref='#'>
+            <span class='glyphicon glyphicon-plus'></span> Add a new Project
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+<% end %>
+

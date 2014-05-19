@@ -1,0 +1,10 @@
+<div class="skinny-container">
+  <h3>Log In</h3>
+  <%= form_for @user, url: session_create_path do |f| %>
+    <div class="form-group glued">
+      <%= f.text_field :username, class: "form-control", placeholder: "Username" %>
+      <%= f.password_field :password, class: "form-control", placeholder: "Password" %>
+    </div>
+    <%= f.submit "Log In", class: "btn btn-success" %>
+  <% end %>
+</div>

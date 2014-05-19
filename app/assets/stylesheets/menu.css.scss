@@ -1,0 +1,97 @@
+.main-menu {
+  position: fixed;
+  background: #333;
+  z-index: 10;
+  width: 300px;
+  left: -300px;
+  height: 100%;
+  color: #eee;
+  padding: 15px;
+  hr {
+    border-top: 1px dashed #555;
+  }
+  .actions {
+    a {
+      color: #ddd;
+    }
+    margin: 11px 0px;
+  }
+  .current-user {
+    display: block;
+    width: 100%;
+    opacity: 0.6;
+    color: #ddd;
+    &:hover {
+      text-decoration: none;
+      opacity: 1.0
+    }
+
+    img {
+      float: left;
+      margin-right: 10px;
+      border-radius: 999px;
+    }
+
+    h4 {
+      margin: 4px 0px 0px 0px;
+      float: left;
+    }
+
+    &:after {
+      clear: both;
+    }
+  }
+  .menu-button {
+    font-size: 28px;
+    position: absolute;
+    cursor: pointer;
+    right: -42px;
+    opacity: 0.8;
+    top: 0px;
+    padding: 0px 7px;
+    &:hover {
+      opacity: 1.0;
+    }
+    &.active {
+      opacity: 1.0;
+      background: #333;
+      border-radius: 0px 0px 4px 0px;
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+
+  .section {
+    h4 {
+      color: #eee;
+      font-weight: bolder;
+    }
+
+    ul {
+      padding: 0px;
+      li {
+        list-style: none;
+        cursor: pointer;
+        a {
+          padding: 5px;
+          width: 100%;
+          border-radius: 3px;
+          margin-left: -5px;
+          display: block;
+          &:hover {
+            text-decoration: none;
+            background: #444;
+          }
+          color: #ddd;
+          &.muted-action {
+            color: #555;
+            &:hover {
+              color: #777;
+            }
+          }
+        }
+      }
+    }
+  }
+}
