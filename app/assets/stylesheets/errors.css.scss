@@ -1,0 +1,10 @@
+@import "colors";
+.error-explanation {
+  color: #eee;
+  background: $red;
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+}

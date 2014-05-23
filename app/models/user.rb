@@ -8,4 +8,8 @@ class User < ActiveRecord::Base
   def gravatar_url(size)
     "http://gravatar.com/avatar/#{Digest::MD5.hexdigest(email)}/?s=#{size}&d=retro"
   end
+
+  def has_linked_dropbox?
+    dropbox_token.nil?
+  end
 end

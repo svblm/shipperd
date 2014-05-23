@@ -9,7 +9,9 @@
   padding: 15px;
   hr {
     border-top: 1px dashed #555;
+    margin-bottom: 10px;
   }
+
   .actions {
     a {
       color: #ddd;
@@ -41,6 +43,7 @@
       clear: both;
     }
   }
+
   .menu-button {
     font-size: 28px;
     position: absolute;
@@ -52,6 +55,7 @@
     &:hover {
       opacity: 1.0;
     }
+
     &.active {
       opacity: 1.0;
       background: #333;
