@@ -1,3 +1,5 @@
 language: ruby
 rvm:
   - 2.1.1
+notifications:
+  slack: svblm:ZGEq5fGtC31fMIfXsX9R9bm0
