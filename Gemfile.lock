@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/freerange/mocha.git
+  revision: 88b276de4d9434bb5c83cad69a680a8e4762de07
+  specs:
+    mocha (1.1.0)
+      metaclass (~> 0.0.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -57,6 +64,7 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    metaclass (0.0.4)
     mime-types (1.25.1)
     minitest (5.3.4)
     multi_json (1.10.0)
@@ -139,6 +147,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   jquery-easing-rails
   jquery-rails
+  mocha!
   omniauth
   omniauth-dropbox-oauth2
   puma
