@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   end
 
   resources :users
-  resources :projects
+  resources :projects do
+    resources :assets
+  end
 
   controller 'dropbox' do
     get "/auth/:provider/callback", to: :link, as: :oauth2_callback

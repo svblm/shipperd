@@ -4,4 +4,17 @@ class Project < ActiveRecord::Base
   belongs_to :owner, class_name: "User"
   validates :name, :description, presence: true
   validates :homepage, format: /https?:\/\/[\S]+/i, allow_nil: true
+  def create_folder(folder_name)
+    owner.dropbox.file_create_folder("#{name.downcase.parameterize}/#{folder_name}")
+  end
+
+  validate :create_project_folder
+  def create_project_folder
+    begin
+      owner.dropbox.file_create_folder(name.downcase.parameterize)
+    rescue DropboxError => e
+      puts e.message
+      errors[:base] << "Failed to create dropbox folder."
+    end
+  end
 end
