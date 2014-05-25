@@ -18,4 +18,9 @@ class UserTest < ActiveSupport::TestCase
       users(:user).save!
     end
   end
+
+  test 'should have owned_projects' do
+    users(:user).owned_projects.push projects(:lean)
+    assert users(:user).save
+  end
 end

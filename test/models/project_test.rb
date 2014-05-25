@@ -25,4 +25,9 @@ class ProjectTest < ActiveSupport::TestCase
       projects(:lean).save!
     end
   end
+
+  test 'should have an owner' do
+    projects(:lean).owner = users(:user)
+    assert projects(:lean).save
+  end
 end

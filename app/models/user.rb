@@ -4,6 +4,7 @@ require 'dropbox_sdk'
 class User < ActiveRecord::Base
   has_and_belongs_to_many :projects
   has_secure_password
+  has_many :owned_projects, foreign_key: "owner_id", class_name: "Project"
   validates :email, :username, presence: true
 
   def gravatar_url(size)
