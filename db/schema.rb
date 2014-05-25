@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20140518150650) do
     t.string   "email"
     t.string   "username"
     t.string   "password_digest"
+    t.string   "dropbox_token"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

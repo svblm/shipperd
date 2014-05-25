@@ -7,4 +7,9 @@ Rails.application.routes.draw do
 
   resources :users
   resources :projects
+
+  controller 'dropbox' do
+    get "/auth/:provider/callback", to: :link, as: :oauth2_callback
+    get "/dropbox/unlink", to: :unlink, as: :dropbox_unlink
+  end
 end

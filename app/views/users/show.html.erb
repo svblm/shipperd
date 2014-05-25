@@ -4,4 +4,13 @@
   <h4>Info:</h4>
   <p class="text-muted">Joined <%= time_ago_in_words(@user.updated_at) %> ago. </p>
   <p class="text-muted">Email: <%= @user.email %></p>
+  <% if @user.has_linked_dropbox? %>
+    <p>
+      <%= image_tag "dropbox.png", class: "dropbox-icon-small pull-left" %>
+      <em>Linked: <%= @user.dropbox.account_info["email"] %></em>
+      <small><%= link_to "unlink", dropbox_unlink_path, class: "text-danger" %></small>
+  </p>
+  <% else %>
+    <%= link_to "Link Dropbox Account", '/auth/dropbox_oauth2/', class: "btn btn-info" %>
+  <% end %>
 </div>
