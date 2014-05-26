@@ -3,7 +3,7 @@ require 'test_helper'
 class AssetTest < ActiveSupport::TestCase
   test "assets should belong to projects" do
     assert_difference 'projects(:lean).assets.count' do
-      projects(:lean).assets << assets(:asset)
+      projects(:lean).assets << Asset.create!(name: "Testo")
       projects(:lean).save!
     end
   end

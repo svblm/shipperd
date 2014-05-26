@@ -11,7 +11,7 @@ class Project < ActiveRecord::Base
   validate :create_project_folder
   def create_project_folder
     begin
-      owner.dropbox.file_create_folder(name.downcase.parameterize)
+      owner.dropbox.file_create_folder(name.downcase.parameterize) unless Rails.env.test?
     rescue DropboxError => e
       puts e.message
       errors[:base] << "Failed to create dropbox folder."

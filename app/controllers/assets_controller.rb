@@ -36,7 +36,7 @@ class AssetsController < ApplicationController
 
   def destroy
     @asset.destroy
-    redirect_to assets_url, notice: 'Asset was successfully destroyed.'
+    redirect_to project_assets_url(@project), notice: 'Asset was successfully destroyed.'
   end
 
   private

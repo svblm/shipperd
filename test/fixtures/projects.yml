@@ -2,3 +2,4 @@ lean:
   name: Lean
   description: A Fixture for tests with the lean description
   homepage: http://github.com/JakeCataford/Lean
+  owner: user

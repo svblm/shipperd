@@ -2,48 +2,49 @@ require 'test_helper'
 
 class AssetsControllerTest < ActionController::TestCase
   setup do
-    @asset = assets(:one)
+    @asset = assets(:asset)
   end
 
   test "should get index" do
-    get :index
+    get :index, project_id: projects(:lean).id
+
     assert_response :success
     assert_not_nil assigns(:assets)
   end
 
   test "should get new" do
-    get :new
+    get :new, project_id: projects(:lean).id
     assert_response :success
   end
 
   test "should create asset" do
-    assert_difference('Asset.count') do
-      post :create, asset: {  }
+    assert_difference('projects(:lean).assets.count') do
+      post :create, project_id: projects(:lean).id, asset: { name: "test" }
     end
 
-    assert_redirected_to asset_path(assigns(:asset))
+    assert_redirected_to project_asset_path(projects(:lean).id, assigns(:asset))
   end
 
   test "should show asset" do
-    get :show, id: @asset
+    get :show, project_id: projects(:lean).id, id: @asset.id
     assert_response :success
   end
 
   test "should get edit" do
-    get :edit, id: @asset
+    get :edit, project_id: projects(:lean).id, id: @asset.id
     assert_response :success
   end
 
   test "should update asset" do
-    patch :update, id: @asset, asset: {  }
-    assert_redirected_to asset_path(assigns(:asset))
+    patch :update, project_id: projects(:lean).id, id: @asset.id, asset: { name: "Hello" }
+    assert_redirected_to project_asset_path(projects(:lean).id, @asset)
   end
 
   test "should destroy asset" do
     assert_difference('Asset.count', -1) do
-      delete :destroy, id: @asset
+      delete :destroy, project_id: projects(:lean).id, id: @asset.id
     end
 
-    assert_redirected_to assets_path
+    assert_redirected_to project_assets_path(projects(:lean).id)
   end
 end
