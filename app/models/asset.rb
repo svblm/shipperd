@@ -1,5 +1,5 @@
 class Asset < ActiveRecord::Base
-  attr_accessor :files
+  attr_accessor :files, :thumbnail
   belongs_to :project
   validates :name, presence: true, uniqueness: true
   enum state: ['staged', 'shipped', 'abandoned']
@@ -21,10 +21,21 @@ class Asset < ActiveRecord::Base
     metadata = dropbox.metadata asset_folder, 1000, true
 
     metadata["contents"].each do |file|
-      @files.push AssetFile.new file["path"]
+      asset_file = AssetFile.new file["path"]
+      asset_file.asset = self
+      if asset_file.filename == "_thumb"
+        @thumbnail = asset_file
+      else
+        @files.push asset_file
+      end
     end
 
     @files
+  end
+
+  def thumbnail
+    @thumbnail || files
+    @thumbnail
   end
 
   private

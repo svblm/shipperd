@@ -5,6 +5,7 @@ class AssetFileTest < ActiveSupport::TestCase
     files = []
     files.push "path" => "path/to/file.txt"
     files.push "path" => "path/to/picture.png"
+    files.push "path" => "path/to/_thumb.jpg"
     DropboxClient.any_instance.expects(:metadata).returns "contents" => files
   end
 
@@ -16,6 +17,10 @@ class AssetFileTest < ActiveSupport::TestCase
     file = assets(:asset).files.first
     assert_equal file.filename, "file"
     assert_equal file.extension, ".txt"
+  end
+
+  test "asset should have thumbnail" do
+    assert_equal assets(:asset).thumbnail.filename, "_thumb"
   end
 end
 
