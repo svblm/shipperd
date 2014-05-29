@@ -13,6 +13,8 @@ class ActiveSupport::TestCase
     unless @controller.nil?
       @controller.stubs(:current_user).returns(users(:user))
     end
+    @dropbox_mock = stub_everything
+    DropboxClient.stubs(:new).returns(@dropbox_mock)
   end
   # Add more helper methods to be used by all tests here...
 end

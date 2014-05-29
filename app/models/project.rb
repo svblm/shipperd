@@ -17,4 +17,8 @@ class Project < ActiveRecord::Base
       errors[:base] << "Failed to create dropbox folder."
     end
   end
+
+  def folder
+    name.downcase.parameterize
+  end
 end

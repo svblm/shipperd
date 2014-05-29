@@ -2,6 +2,7 @@ require 'test_helper'
 
 class UsersControllerTest < ActionController::TestCase
   test "should get show" do
+    @dropbox_mock.expects(:account_info).returns("info")
     get :show, id: users(:user)
     assert_response :success
   end

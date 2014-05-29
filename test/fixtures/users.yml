@@ -2,3 +2,4 @@ user:
   email: email@email.com
   username: username
   password_digest: 1234567890
+  dropbox_token: 1234567890

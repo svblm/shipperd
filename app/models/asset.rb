@@ -1,4 +1,5 @@
 class Asset < ActiveRecord::Base
+  attr_accessor :files
   belongs_to :project
   validates :name, presence: true, uniqueness: true
   enum state: ['staged', 'shipped', 'abandoned']
@@ -13,4 +14,25 @@ class Asset < ActiveRecord::Base
     end
   end
 
+  def files
+    return @files unless @files.nil?
+
+    @files = []
+    metadata = dropbox.metadata asset_folder, 1000, true
+
+    metadata["contents"].each do |file|
+      @files.push AssetFile.new file["path"]
+    end
+
+    @files
+  end
+
+  private
+  def asset_folder
+    "#{project.folder}/#{name.downcase.parameterize}"
+  end
+
+  def dropbox
+    project.owner.dropbox
+  end
 end
