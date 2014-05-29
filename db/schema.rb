@@ -11,12 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140525011201) do
+ActiveRecord::Schema.define(version: 20140529162156) do
 
   create_table "assets", force: true do |t|
     t.string   "name"
     t.integer  "project_id"
     t.integer  "state",      default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "revision",   default: 0
+  end
+
+  create_table "comments", force: true do |t|
+    t.string   "body"
+    t.integer  "revision"
+    t.integer  "user_id"
+    t.integer  "asset_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

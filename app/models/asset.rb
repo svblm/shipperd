@@ -1,10 +1,11 @@
 class Asset < ActiveRecord::Base
   attr_accessor :files, :thumbnail
   belongs_to :project
+  has_many :comments
   validates :name, presence: true, uniqueness: true
   enum state: ['staged', 'shipped', 'abandoned']
+  before_create :create_asset_folder
 
-  validate :create_asset_folder
   def create_asset_folder
     begin
       project.create_folder(name.downcase.parameterize) unless Rails.env.test?

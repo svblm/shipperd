@@ -13,7 +13,9 @@
  *= require_tree .
  *= require_self
  *= require pnotify
+ *= require jquery.fileupload-ui
  */
+
 @import "bootstrap";
 @import "colors";
 html, body {

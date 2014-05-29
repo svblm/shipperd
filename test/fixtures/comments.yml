@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+comment:
+  body: Hello World
+  revision: 1
+  asset: asset
+  user: user
+
+out_of_date_comment:
+  body: goodbye world :(
+  revision: 0
+  asset: asset
+  user: user

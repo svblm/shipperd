@@ -39,6 +39,17 @@ class AssetsController < ApplicationController
     redirect_to project_assets_url(@project), notice: 'Asset was successfully destroyed.'
   end
 
+  def upload
+    uploader = @asset.dropbox.get_chunked_uploader(asset_params[:upload], asset_params[:upload].size)
+    uploader.upload
+    uploader.finish("#{@asset.folder_name}/#{asset_params[:upload].original_filename}", true)
+    @asset.files = nil # clear the cached model.
+    render json: { created: true }
+  end
+
+  def files
+  end
+
   private
     def set_asset
       @asset = Asset.find(params[:id])
@@ -49,6 +60,6 @@ class AssetsController < ApplicationController
     end
 
     def asset_params
-      params.require(:asset).permit(:name)
+      params.require(:asset).permit(:name, :upload)
     end
 end

@@ -2,6 +2,7 @@
 #= require jquery_ujs
 #= require turbolinks
 #= require pnotify
+#= require jquery-fileupload
 #= require_tree .
 
 toast = (message, type) ->
