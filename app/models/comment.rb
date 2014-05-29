@@ -1,13 +1,13 @@
 require 'redcarpet'
 class Comment < ActiveRecord::Base
-  belongs_to :user
+  belongs_to :commenter, class_name: 'User'
   belongs_to :asset
   validates :body, presence: true
-  validates :user, :asset, associated: true
-  before_save :convert_to_html, :set_revision_number
+  validates :commenter, :asset, associated: true
+  before_save :parse_for_mentions, :convert_to_html, :set_revision_number
 
   def convert_to_html
-    markdown = Redcarpet::Markdown.new Redcarpet::Render::HTML.new(hard_wrap: true), autolink: true, underline: true, fenced_code_blocks: true, disable_indented_code_blocks: true, no_intra_emphasis: true
+    markdown = Redcarpet::Markdown.new Redcarpet::Render::HTML.new(hard_wrap: true), autolink: true, underline: true, fenced_code_blocks: true, strikethrough: true, disable_indented_code_blocks: true, no_intra_emphasis: true
     self.body = markdown.render(self.body)
   end
 
@@ -17,5 +17,21 @@ class Comment < ActiveRecord::Base
 
   def out_of_date?
     self.revision < asset.revision
+  end
+
+  def parse_for_mentions
+    match_groups = self.body.scan(/@[a-z0-9\-_]*/i)
+    return if match_groups.nil?
+    match_groups.map! { |m| m[1..-1].downcase }
+    match_groups.uniq!
+    match_groups.each do |match|
+      user = User.all.where("lower(username) = ?", match).first
+      unless user.nil?
+        Notification.new_mention!(commenter, user, body, self)
+        self.body.gsub!(/#{match}/i, "**@#{match}**")
+      else
+        self.body.gsub!(/#{match}/i, "~~@#{match}~~")
+      end
+    end
   end
 end

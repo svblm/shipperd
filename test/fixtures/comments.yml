@@ -4,10 +4,10 @@ comment:
   body: Hello World
   revision: 1
   asset: asset
-  user: user
+  commenter: user
 
 out_of_date_comment:
   body: goodbye world :(
   revision: 0
   asset: asset
-  user: user
+  commenter: user

@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :owned_projects, foreign_key: "owner_id", class_name: "Project"
   validates :email, :username, presence: true
+  validates :username, format: /[a-z0-9\-_]+/
 
   def gravatar_url(size)
     "http://gravatar.com/avatar/#{Digest::MD5.hexdigest(email)}/?s=#{size}&d=retro"

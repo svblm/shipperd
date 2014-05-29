@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140529162156) do
+ActiveRecord::Schema.define(version: 20140529190803) do
 
   create_table "assets", force: true do |t|
     t.string   "name"
@@ -25,8 +25,19 @@ ActiveRecord::Schema.define(version: 20140529162156) do
   create_table "comments", force: true do |t|
     t.string   "body"
     t.integer  "revision"
-    t.integer  "user_id"
+    t.integer  "commenter_id"
     t.integer  "asset_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "notifications", force: true do |t|
+    t.integer  "type"
+    t.boolean  "read",       default: false
+    t.string   "message"
+    t.string   "url"
+    t.integer  "user_id"
+    t.integer  "sender_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

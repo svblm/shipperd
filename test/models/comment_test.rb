@@ -4,7 +4,7 @@ class CommentTest < ActiveSupport::TestCase
   test "should create and parse comment" do
     comment = Comment.new
     comment.asset = assets(:asset)
-    comment.user = users(:user)
+    comment.commenter = users(:user)
     comment.body = "*markdown*"
     comment.save!
     assert_equal comment.revision, 1
