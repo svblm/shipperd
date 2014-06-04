@@ -1,6 +1,24 @@
 class AssetFile
   attr_accessor :path, :filename, :extension, :asset
 
+  IMAGE_TYPES = [
+    ".png",
+    ".gif",
+    ".jpeg",
+    ".jpg",
+    ".svg"
+  ]
+
+  SCRIPT_TYPES = [
+    ".cs"
+  ]
+
+  MODEL_TYPES = [
+    ".fbx",
+    ".collada",
+    ".dae"
+  ]
+
   def initialize path
     @path = path
   end
@@ -22,6 +40,29 @@ class AssetFile
     else
       nil # parse for nice placeholder image
     end
+  end
+
+  def is_image_file?
+    [
+      ".png",
+      ".gif",
+      ".jpeg",
+      ".jpg",
+      ".svg"
+    ].include? extension
+  end
+
+  def type
+    'image' if IMAGE_TYPES.include? extension
+    'model' if MODEL_TYPES.include? extension
+    'script' if SCRIPT_TYPES.include? extension
+  end
+
+  def metadata
+    {
+      height: "100px",
+      width: "100px"
+    }
   end
 
   private

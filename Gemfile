@@ -26,10 +26,12 @@ gem 'jquery-fileupload-rails'
 gem 'bootstrap-sass'
 gem 'jquery-easing-rails'
 gem 'jquery-rails'
+gem 'masonry-rails'
 
 # Security
 gem 'omniauth'
 gem 'omniauth-dropbox-oauth2'
+gem 'omniauth-github'
 gem 'bcrypt', '~> 3.1.7'
 
 
@@ -39,4 +41,5 @@ gem 'puma'
 
 # Integrations
 gem 'dropbox-sdk'
+gem 'octokit'
 gem 'slack-notifier'

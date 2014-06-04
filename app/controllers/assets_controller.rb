@@ -1,6 +1,7 @@
 class AssetsController < ApplicationController
   before_action :set_asset, only: [:show, :edit, :update, :destroy]
   before_action :set_project
+  before_action :set_new_comment, only: :show
 
   def index
     @assets = Asset.all
@@ -57,6 +58,11 @@ class AssetsController < ApplicationController
 
     def set_project
       @project = Project.find(params[:project_id])
+    end
+
+    def set_new_comment
+      @new_comment = Comment.new
+      @new_comment.asset = @asset
     end
 
     def asset_params

@@ -39,6 +39,21 @@ class Asset < ActiveRecord::Base
     @thumbnail
   end
 
+  def ship!
+    #GITHUB STUFF GOES HERR
+    shipped!
+    save!
+  end
+
+  def abandon!
+    abandoned!
+    save!
+  end
+
+  def shipable?
+    not experimental? && staged?
+  end
+
   private
   def asset_folder
     "#{project.folder}/#{name.downcase.parameterize}"

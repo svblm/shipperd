@@ -1,14 +1,6 @@
 require 'test_helper'
 
 class AssetFileTest < ActiveSupport::TestCase
-  def setup
-    files = []
-    files.push "path" => "path/to/file.txt"
-    files.push "path" => "path/to/picture.png"
-    files.push "path" => "path/to/_thumb.jpg"
-    DropboxClient.any_instance.expects(:metadata).returns "contents" => files
-  end
-
   test "asset should have files" do
     assert_equal assets(:asset).files.count, 2
   end

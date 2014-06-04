@@ -99,3 +99,37 @@
     }
   }
 }
+
+.notification-menu {
+  display: block;
+  font-size: 25px;
+  position: fixed;
+  margin: 10px;
+  right: 75px;
+  opacity: 0.5;
+
+  &:hover {
+    opacity: 1.0
+  }
+
+  .glyphicon {
+    color: #999999;
+  }
+
+  a:hover {
+    text-decoration: none;
+  }
+
+  .badge {
+    margin-top: 2px;
+    vertical-align: top;
+    background: #2a6496;
+  }
+}
+
+.action-menu {
+  position: fixed;
+  left: 10px;
+  margin: 10px;
+  top: 32px;
+}

@@ -1,0 +1,19 @@
+<div class='widget'>
+  <%= link_to project_asset_path(project, asset), class: "col-md-4 col-lg-3 col-sm-2 col-xs-1" do %>
+    <% if asset.thumbnail.nil? %>
+      <div class="thumb">
+      </div>
+    <% else %>
+      <%= image_tag asset.thumbnail.display_image_path, class: "thumb" %>
+    <% end %>
+  <div class="info">
+    <h1><%= asset.name %></h1>
+    <p>
+      <small class="text-muted">
+        <span class="glyphicon glyphicon-folder-open"></span>
+        &nbsp; <%= asset.files.count %> Files
+      </small>
+    </p>
+  </div>
+<% end %>
+</div>

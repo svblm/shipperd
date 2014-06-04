@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   has_secure_password
   has_many :comments
   has_many :owned_projects, foreign_key: "owner_id", class_name: "Project"
+  has_many :invites
   validates :email, :username, presence: true
   validates :username, format: /[a-z0-9\-_]+/
 
@@ -23,5 +24,21 @@ class User < ActiveRecord::Base
     else
       @dropbox_client
     end
+  end
+
+  def github
+    if @github_client.nil?
+      @github_client = Octokit.new access_token: dropbox_token
+    else
+      @github_client
+    end
+  end
+
+  def has_invite_to_project? project
+    invites.pending.each do |invite|
+      return true if invite.project == project
+    end
+
+    return false
   end
 end

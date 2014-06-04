@@ -7,11 +7,20 @@ Rails.application.routes.draw do
 
   resources :users
   resources :projects do
-    resources :assets
+    resources :assets do
+      put '/ship/', to: 'assets#ship', as: 'ship'
+      resources :comments
+    end
   end
 
   controller 'dropbox' do
-    get "/auth/:provider/callback", to: :link, as: :oauth2_callback
+    get "/auth/dropbox_oauth2/callback", to: :link, as: :dropbox_oauth2_callback
     get "/dropbox/unlink", to: :unlink, as: :dropbox_unlink
   end
+
+  controller 'github' do
+    get "/auth/github/callback", to: :link, as: :github_oauth2_callback
+    get "/github/unlink", to: :unlink, as: :github_unlink
+  end
+
 end

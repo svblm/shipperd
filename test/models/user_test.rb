@@ -1,11 +1,7 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
-  def setup
-    DropboxClient.any_instance.stubs(:account_info).returns(nil)
-  end
-
-  test "user should have password" do
+   test "user should have password" do
     assert_difference 'User.count' do
       User.create(
         email: 'JakeCataford@gmail.com',

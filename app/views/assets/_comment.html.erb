@@ -1,0 +1,19 @@
+<% if comment.out_of_date? %>
+  <div class="comment collapsed">
+    <p class="text-muted">
+      <strong>
+        <span class="glyphicon glyphicon-time"></span> &nbsp; <%= comment.commenter.username %>
+      </strong>
+      commented on an our of date revision.
+    </p>
+  </div>
+<% else %>
+  <div class="comment">
+    <div class="comment-header">
+      <%= image_tag comment.commenter.gravatar_url(40), class: "pull-right" %>
+      <h5><% comment.commenter.username %><small class="text-muted"> commented <%= time_ago_in_words(comment.updated_at) %> ago: </small>
+    </div>
+    <p> <%= comment.body %> </p>
+  </div>
+<% end %>
+

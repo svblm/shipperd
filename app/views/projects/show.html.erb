@@ -1,5 +1,16 @@
 <section class="page col-md-12">
-  <h1><%= @project.name %> <small class="text-muted">Project Details</small></h1>
+  <h1><%= @project.name %> <small class="text-muted">Project</small></h1>
   <p class="text-muted"><em><%= @project.description %></em></p>
+  <div class="action-menu">
+    <%= link_to new_project_asset_path(@project), class: "text-muted" do %>
+      <span class="glyphicon glyphicon-plus"></span>
+      New Asset
+    <% end %>
+  </div>
   <p id="notice"><%= notice %></p>
+  <div class="staged-assets js-masonry" data-masonry-options='{ "columnWidth" : 25%, "itemSelector" :  }'>
+    <% @project.assets.staged.each do |asset| %>
+      <%= render "assets/asset_widget", project: @project, asset: asset %>
+    <% end %>
+  </div>
 </section>

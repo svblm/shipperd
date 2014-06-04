@@ -1,6 +1,6 @@
 <%= form_for [@project, @asset] do |f| %>
   <% if @asset.errors.any? %>
-    <div id="error_explanation">
+    <div class="error_explanation well text-danger">
       <h2><%= pluralize(@asset.errors.count, "error") %> prohibited this asset from being saved:</h2>
 
       <ul>
@@ -10,10 +10,18 @@
       </ul>
     </div>
   <% end %>
-
-  <%= f.text_field :name %>
-
+  <div class="form-group">
+  <%= f.text_field :name, class: "form-control", placeholder: "Asset Name" %>
+  </div>
+  <div class="form-group">
+    <%= f.check_box :experimental %>
+    <strong> Experimental Mode </strong>
+    <small class="text-muted">
+      Use experimental mode for assets that you want feedback on, but dont want to ship right now.
+      You cannot ship experimental assets until you mark them as non-experimental.
+    </small>
+  </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit class: "btn btn-success" %>
   </div>
 <% end %>
