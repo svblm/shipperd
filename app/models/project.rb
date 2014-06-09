@@ -18,6 +18,10 @@ class Project < ActiveRecord::Base
     end
   end
 
+  def has_member?(user)
+    owner == user or users.include? user
+  end
+
   def folder
     name.downcase.parameterize
   end

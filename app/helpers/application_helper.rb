@@ -5,5 +5,4 @@ module ApplicationHelper
     rescue ActiveRecord::RecordNotFound
       nil
   end
-
 end
