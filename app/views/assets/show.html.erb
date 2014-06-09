@@ -1,35 +1,35 @@
 <section class="page col-md-12">
-  <h2><%= @asset.name %></h2><small class="text-muted"><%= link_to "#{@project.name}", project_assets_path(@project) %></small>
-  <p id="notice"><%= notice %></p>
 
-  <div class="col-md-12 showcase">
-    <div class="col-md-8">
-      <%= image_tag @asset.thumbnail.display_image_path, class: "thumb" unless @asset.thumbnail.nil? %>
-    </div>
-    <div class="col-md-4">
-      <div class="col-md-12">
+  <div class="showcase">
+      <div class="col-md-8">
+        <%= image_tag @asset.thumbnail.display_image_path, class: "thumb" unless @asset.thumbnail.nil? %>
+      </div>
+      <div class="col-md-4">
+        <h4><%= @asset.name %></h4>
+        <h6 class="text-muted"><%= link_to "#{@project.name}", project_assets_path(@project) %></h6>
+        <p><small class="text-muted">Updated <%= time_ago_in_words(@asset.updated_at) %> ago</small></p>
         <div class="<%= @asset.state %> asset-badge"><%= @asset.state %></div>
         <% if @asset.experimental? %>
           <div class="experimental asset-badge">Experimental</div>
         <% end %>
-        <p><small class="text-muted">Updated <%= time_ago_in_words(@asset.updated_at) %></small></p>
+        <div class="clearfix"></div>
         <% @asset.files.each do |asset_file| %>
           <%= render 'files/meta', file: asset_file %>
         <% end %>
+        <% if @asset.shipable? %>
+          <%= button_to "Ship it.", ship_project_asset_path(@project, @asset), class: "btn btn-success" %>
+        <% end %>
+
       </div>
-      <% if @asset.shipable? %>
-        <%= button_to "Ship it.", project_asset_ship_path(@project, @asset), class: "btn btn-success" %>
-      <% end %>
-    </div>
+      <div class="clearfix"></div>
   </div>
-  <div class="col-md-12 comments">
+  <div class="comments">
+    <h5 class="text-muted">Discussion:</h5>
     <% @asset.comments.each do |comment| %>
       <%= render 'assets/comment', comment: comment %>
     <% end %>
 
     <%= render 'assets/new_comment_form', comment: @new_comment %>
-    <%= link_to 'Edit', edit_project_asset_path(@project, @asset) %> |
-    <%= link_to 'Back', project_assets_path(@project) %>
   </div>
   <div class="clearfix"></div>
 </section>

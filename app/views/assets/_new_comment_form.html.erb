@@ -1,3 +1,22 @@
-<%= form_for [comment.asset.project, comment.asset, comment] do |f| %>
-  <%= f.text_field :body %>
-<% end %>
+<div class="new-comment-form">
+<!-- Nav tabs -->
+<ul class="nav nav-tabs">
+  <li class="active"><a href="#write" data-toggle="tab">New Comment</a></li>
+  <li><a href="#preview" data-toggle="tab">Preview</a></li>
+</ul>
+
+<!-- Tab panes -->
+<div class="tab-content">
+  <div class="tab-pane active" id="write">
+  <%= form_for [comment.asset.project, comment.asset, comment] do |f| %>
+    <div class="form-group">
+      <%= f.text_area :body, rows: 6, cols: 80, class:"form-control" %>
+    </div>
+      <%= f.submit "Send", class: "btn btn-primary" %>
+  <% end %>
+  </div>
+  <div class="tab-pane" id="preview">
+    <strong class="text-muted"> Comming soon! </strong>
+  </div>
+</div>
+</div>

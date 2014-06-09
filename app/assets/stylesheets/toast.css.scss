@@ -1,0 +1,25 @@
+.toast {
+  position: fixed;
+  bottom: -50px;
+  opacity: 0;
+  margin: 0 auto;
+  width: 100%;
+  text-align: center;
+  background: rgba(0,100,200,0.8);
+  padding: 15px;
+  color: #eee;
+  font-weight: 800;
+  -webkit-transition: opacity 1s, bottom 1s;
+  transition: opacity 1s, bottom 1s;
+
+  &.info {
+    background: rgba(0,100,200,0.8);
+  }
+
+  &.popup {
+    opacity: 1.0;
+    bottom: 0px;
+    -webkit-transition: opacity 2s, bottom 2s;
+
+  }
+}

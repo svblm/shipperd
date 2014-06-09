@@ -5,13 +5,22 @@ Rails.application.routes.draw do
     get '/logout', to: 'session#logout'
   end
 
-  resources :users
+  resources :users do
+    get '/notifications', to: 'notification#index', as: 'notifications'
+  end
+
   resources :projects do
     resources :assets do
-      put '/ship/', to: 'assets#ship', as: 'ship'
+      member do
+        put '/ship', to: 'assets#ship', as: 'ship'
+        get '/add-files', to: 'assets#add_files'
+        put '/upload', to: 'assets#upload'
+      end
       resources :comments
     end
+    resources :invitations
   end
+
 
   controller 'dropbox' do
     get "/auth/dropbox_oauth2/callback", to: :link, as: :dropbox_oauth2_callback
@@ -23,4 +32,9 @@ Rails.application.routes.draw do
     get "/github/unlink", to: :unlink, as: :github_unlink
   end
 
+  controller 'notification' do
+    get "/notification/:id/read", to: :read, as: 'notification_read'
+  end
+
+  root to: "projects#index"
 end

@@ -1,14 +1,15 @@
-class InvitationController < ApplicationController
+class InvitationsController < ApplicationController
+  before_action :set_project
+
   def create
     user ||= User.find_by_username(invitation_params[:user])
-    user ||= User.find(:user)
-    user ||= User.find_by_email(:email)
+    user ||= User.find_by_email(invitation_params[:email])
 
-    redirect_to :back, notice: "#{user.username} does not exist." if user.nil?
-    redirect_to :back, notice: "#{user.username} has already joined #{@project.name}" if @project.users.include? user
-    redirect_to :back, notice: "#{user.username} already has a pending invitation." if user.has_invite_to_project? project
+    redirect_to project_path(@project), notice: "That user does not exist." and return if user.nil?
+    redirect_to project_path(@project), notice: "#{user.username} has already joined #{@project.name}" and return if @project.users.include? user
+    redirect_to project_path(@project), notice: "#{user.username} already has a pending invitation." and return if user.has_invite_to_project? @project
 
-    invite = Invitation.new user: user,
+    invite = Invite.new user: user,
                             sender: @current_user,
                             project: @project
 
@@ -35,6 +36,10 @@ class InvitationController < ApplicationController
     redirect_to project_path(@project)
   end
 
+  def new
+    @invitation = Invite.new
+  end
+
   private
   def invitation_params
     params.require(:invite).permit(:user,:email, :project)
@@ -45,6 +50,6 @@ class InvitationController < ApplicationController
   end
 
   def set_invitation
-    @invitation = Invitation.find()
+    @invitation = Invite.find(params[:id])
   end
 end

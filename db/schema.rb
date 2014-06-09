@@ -42,12 +42,13 @@ ActiveRecord::Schema.define(version: 20140604191133) do
   end
 
   create_table "notifications", force: true do |t|
-    t.integer  "type"
+    t.integer  "event"
     t.boolean  "read",       default: false
     t.string   "message"
     t.string   "url"
     t.integer  "user_id"
     t.integer  "sender_id"
+    t.integer  "comment_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

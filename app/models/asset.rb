@@ -54,12 +54,12 @@ class Asset < ActiveRecord::Base
     not experimental? && staged?
   end
 
+  def dropbox
+    project.owner.dropbox
+  end
+
   private
   def asset_folder
     "#{project.folder}/#{name.downcase.parameterize}"
-  end
-
-  def dropbox
-    project.owner.dropbox
   end
 end

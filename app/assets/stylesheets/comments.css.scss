@@ -1,0 +1,32 @@
+.new-comment-form {
+  background: #eee;
+  padding: 10px;
+  border-radius: 4px;
+  .tab-content {
+    padding: 10px;
+    background: #fff;
+    border: solid #ddd;
+    border-width: 0px 1px 1px 1px;
+    .form-group {
+      max-width: 600px;
+    }
+  }
+}
+
+.comment {
+  background: #eee;
+  padding: 10px;
+  margin: 10px 0px;
+  border-radius: 4px;
+
+  img {
+    padding-right: 15px;
+  }
+
+  .body {
+    margin-left: 55px;
+    color: #666;
+    font-weight: 100;
+    max-width: 600px;
+  }
+}

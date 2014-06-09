@@ -1,0 +1,6 @@
+<h3>Invite a collaborator to <%= @project.name %></h3>
+<%= form_for [@project, @invitation], url: project_invitations_path(@project.id) do |f| %>
+  <p class="text-muted">Email or username</p>
+  <%= f.text_field :user, class: "form-control", placeholder: "Email or username" %>
+  <%= f.submit "Send", class: "btn btn-success" %>
+<% end %>

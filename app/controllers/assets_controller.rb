@@ -1,5 +1,5 @@
 class AssetsController < ApplicationController
-  before_action :set_asset, only: [:show, :edit, :update, :destroy]
+  before_action :set_asset, only: [:show, :edit, :update, :destroy, :add_files, :upload]
   before_action :set_project
   before_action :set_new_comment, only: :show
 
@@ -66,6 +66,6 @@ class AssetsController < ApplicationController
     end
 
     def asset_params
-      params.require(:asset).permit(:name, :upload)
+      params.require(:asset).permit(:name, :experimental, :upload)
     end
 end

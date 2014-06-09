@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :owned_projects, foreign_key: "owner_id", class_name: "Project"
   has_many :invites
+  has_many :notifications
   validates :email, :username, presence: true
   validates :username, format: /[a-z0-9\-_]+/
 

@@ -1,23 +1,14 @@
-<h1>Listing projects</h1>
+<h1>Your Projects</h1>
+<p class="text-muted">Use the sidebar menu to add a new project.</p>
+<ul>
+  <% current_user.projects.each do |project| %>
+    <li><%=link_to project.name, project_path(project) %></li>
+  <% end %>
+</ul>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @projects.each do |project| %>
-      <tr>
-        <td><%= link_to 'Show', project %></td>
-        <td><%= link_to 'Edit', edit_project_path(project) %></td>
-        <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Project', new_project_path %>
+<h4> Pending Invites </h4>
+<ul>
+  <% current_user.invites.pending.each do |invite| %>
+    <li><%= invite %></li>
+  <% end %>
+</ul>

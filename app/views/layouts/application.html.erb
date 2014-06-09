@@ -12,7 +12,7 @@
   <%= link_to "/", class: "logo" do %>
     <%= image_tag 'shipperd.png' %>
   <% end %>
-  <%= render 'navigation/notification_menu' %>
+  <%= render 'navigation/notification_menu' unless current_user.nil? %>
   <div class="container">
     <%= yield %>
   </div>

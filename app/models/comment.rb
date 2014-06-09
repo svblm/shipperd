@@ -7,8 +7,12 @@ class Comment < ActiveRecord::Base
   before_save :parse_for_mentions, :convert_to_html, :set_revision_number
 
   def convert_to_html
+    self.body = Comment.markdown(body)
+  end
+
+  def self.markdown(text)
     markdown = Redcarpet::Markdown.new Redcarpet::Render::HTML.new(hard_wrap: true), autolink: true, underline: true, fenced_code_blocks: true, strikethrough: true, disable_indented_code_blocks: true, no_intra_emphasis: true
-    self.body = markdown.render(self.body)
+    markdown.render(text)
   end
 
   def set_revision_number
@@ -27,7 +31,7 @@ class Comment < ActiveRecord::Base
     match_groups.each do |match|
       user = User.all.where("lower(username) = ?", match).first
       unless user.nil?
-        Notification.new_mention!(commenter, user, body, self)
+        Notification.new_mention!(commenter, user, self)
         self.body.gsub!(/#{match}/i, "**@#{match}**")
       else
         self.body.gsub!(/#{match}/i, "~~@#{match}~~")

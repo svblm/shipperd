@@ -10,10 +10,10 @@
 <% else %>
   <div class="comment">
     <div class="comment-header">
-      <%= image_tag comment.commenter.gravatar_url(40), class: "pull-right" %>
-      <h5><% comment.commenter.username %><small class="text-muted"> commented <%= time_ago_in_words(comment.updated_at) %> ago: </small>
-    </div>
-    <p> <%= comment.body %> </p>
+      <%= image_tag comment.commenter.gravatar_url(40), class: "pull-left" %>
+      <p><small class="text-muted">@<%= comment.commenter.username %> commented <%= time_ago_in_words(comment.updated_at) %> ago: </small>
+      </div>
+    <div class="body"> <%= comment.body.html_safe %> </div>
   </div>
 <% end %>
 

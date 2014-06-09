@@ -1,0 +1,14 @@
+<section class="col-md-12 page">
+  <h3>Notifications:</h3>
+  <% @notifications.each do |notification| %>
+    <% if notification.mention? %>
+      <%= link_to  notification_read_path(notification), class: "notif" do %>
+        @<%= notification.sender.username %> mentioned you in a comment.
+        <% end %>
+    <% else %>
+      <div class="notif">
+       Something happened that <%= notification.sender.username %> thinks you should know about.
+     </div>
+    <% end %>
+  <% end %>
+</section>

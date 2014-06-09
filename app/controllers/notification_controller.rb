@@ -1,13 +1,9 @@
-class NotificationController < ActionController::Base
+class NotificationController < ApplicationController
   def read
     notification = Notification.find(params[:id])
     notification.read = true
     if notification.save
-      if notification.mention?
-        redirect_to asset_path(notification.comment.asset)
-      else
-        redirect_to :back
-      end
+      redirect_to notification.url
     else
       redirect_to :back, error: "Failed to resolve notification url."
     end
@@ -19,5 +15,10 @@ class NotificationController < ActionController::Base
     end
 
     head :no_content
+  end
+
+  def index
+    @user = User.find(params[:user_id])
+    @notifications = @user.notifications.unread
   end
 end
