@@ -1,5 +1,6 @@
 class InvitationsController < ApplicationController
   before_action :set_project
+  before_action :set_invitation, only: [:accept, :reject, :show]
 
   def create
     user ||= User.find_by_username(invitation_params[:user])
@@ -21,10 +22,7 @@ class InvitationsController < ApplicationController
   end
 
   def accept
-    user.invites.pending.each do |invite|
-      invite.accept! if invite.project == @project
-    end
-
+    @invitation.accept!
     redirect_to project_path(@project)
   end
 

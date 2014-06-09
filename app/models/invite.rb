@@ -11,7 +11,7 @@ class Invite < ActiveRecord::Base
 
   def accept!
     accepted!
-    project.users.add(user)
+    project.users.push(user)
     project.save!
     save!
   end
