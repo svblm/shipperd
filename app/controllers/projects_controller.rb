@@ -1,4 +1,5 @@
 class ProjectsController < ApplicationController
+  include ApplicationHelper
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
   def index
