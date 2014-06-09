@@ -18,7 +18,11 @@ Rails.application.routes.draw do
       end
       resources :comments
     end
-    resources :invitations
+    resources :invitations do
+      member do
+        get '/accept', to: 'invitations#accept', as: 'accept'
+      end
+    end
   end
 
 

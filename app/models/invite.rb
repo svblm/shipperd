@@ -3,6 +3,7 @@ class Invite < ActiveRecord::Base
   belongs_to :user
   belongs_to :sender, class_name: "User", foreign_key: :sender_id
   belongs_to :project
+  after_create :notify
 
   scope :pending,  -> { where( state: 0 ) }
   scope :accepted, -> { where( state: 1 ) }
@@ -18,5 +19,9 @@ class Invite < ActiveRecord::Base
   def reject!
     rejected!
     save!
+  end
+
+  def notify
+    Notification.new_invite! sender, user, self
   end
 end

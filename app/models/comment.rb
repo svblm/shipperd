@@ -32,9 +32,9 @@ class Comment < ActiveRecord::Base
       user = User.all.where("lower(username) = ?", match).first
       unless user.nil?
         Notification.new_mention!(commenter, user, self)
-        self.body.gsub!(/#{match}/i, "**@#{match}**")
+        self.body.gsub!(/@#{match}/i, "**@#{match}**")
       else
-        self.body.gsub!(/#{match}/i, "~~@#{match}~~")
+        self.body.gsub!(/@#{match}/i, "~~@#{match}~~")
       end
     end
   end

@@ -16,4 +16,13 @@ class Notification < ActiveRecord::Base
     notification.url = Rails.application.routes.url_helpers.project_asset_path(comment.asset.project, comment.asset)
     notification.save!
   end
+
+  def self.new_invite!(sender, recipient, invite)
+    notification = Notification.new
+    notification.invite!
+    notification.user = recipient
+    notification.sender = sender
+    notification.url = Rails.application.routes.url_helpers.accept_project_invitation_path(invite.project, invite)
+    notification.save!
+  end
 end
